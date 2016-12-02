@@ -1,0 +1,30 @@
+.paymentTable {
+  .md-head {
+    background-color: #dbf8f8;
+    text-transform: uppercase;
+    th {
+      color: #61a9a8 !important;
+    }
+  }
+  .md-cell {
+    border-top: 0px !important;
+  }
+  .md-body {
+    tr:nth-child(2n) {
+      background-color: #f8f8f8;
+    }
+  }
+}
+
+.total {
+  margin-top: 45px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  div {
+    margin-left: 20px;
+    color: #767a91;
+    span {
+      color: #61a9a8;
+    }
+  }
+}

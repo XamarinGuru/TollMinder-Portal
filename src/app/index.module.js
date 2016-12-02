@@ -2,27 +2,36 @@ import {config} from './index.config';
 import {routerConfig} from './index.route';
 import {runBlock} from './index.run';
 
-import {RootController} from './controllers/root';
-import {LoginController} from './controllers/login';
-import {RoadListController} from './controllers/roadList';
-import {EntityController} from './controllers/entity';
-import {DialogController} from './controllers/dialog';
+import {countries} from './shared/countryList';
 
-import {LoginService} from './services/login';
-import {CrudService} from './services/crud';
+import {LoginService} from './components/login/service';
+import {CrudService} from './shared/crud';
+import {PaymentHistoryService} from './components/paymentHistory/service';
 
-angular.module('tollminderAdmin',
+import {RootController} from './index.controller';
+import {LoginController} from './components/login/controller';
+import {HomeController} from './components/home/controller';
+import {SettingsController} from './components/settings/controller';
+import {PaymentHistoryController} from './components/paymentHistory/controller';
+
+angular.module('tollminderPortal',
   [ 'ngSanitize',
     'ngMessages',
     'ui.router',
+    'ui.mask',
     'ngMaterial',
     'md.data.table',
-    'ngMap'
+    'ngMap',
+    'googleplus',
+    'facebook',
+    'ngFileUpload',
+    'ngContextMenu'
   ])
 
-.constant('API', 'http://54.152.103.212/api')
-//.constant('API', 'http://localhost:7000/api')
+//.constant('API', 'http://54.152.103.212/api')
+.constant('API', 'http://192.168.13.118:7000/api')
 .constant('G_API_Key', 'AIzaSyA3bW45fzOFxRkt23VXQlG0W7Oy9Ud8M_g')
+.constant('COUNTRIES', countries)
 
 .config(config)
 .config(routerConfig)
@@ -31,9 +40,10 @@ angular.module('tollminderAdmin',
 
 .controller('RootController', RootController)
 .controller('LoginController', LoginController)
-.controller('RoadListController', RoadListController)
-.controller('EntityController', EntityController)
-.controller('DialogController', DialogController)
+.controller('HomeController', HomeController)
+.controller('SettingsController', SettingsController)
+.controller('PaymentHistoryController', PaymentHistoryController)
 
 .service('LoginService', LoginService)
+.service('PaymentHistoryService', PaymentHistoryService)
 .service('CrudService', CrudService);

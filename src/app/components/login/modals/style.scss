@@ -1,0 +1,80 @@
+.login {
+  width: 350px;
+  md-toolbar {
+    background-color: #eae9ed !important;
+    color: #000 !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: auto;
+
+    .close {
+      position: absolute;
+      margin-right: 0;
+      margin-left: 150px;
+      font-size: 24px;
+      i {
+        color: #d2d0d6;
+        &:hover { color: #333647; }
+      }
+    }
+  }
+
+  md-dialog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 35px 40px;
+
+    .select {
+      margin-right: -30px;
+    }
+
+    md-select {
+      width: 100px;
+
+      img {
+        width: 30px;
+        height: 20px;
+        position: absolute !important;
+        margin-top: -15px;
+        margin-left: 40px;
+        overflow: auto !important;
+      }
+    }
+
+    input {
+      padding-left: 40px;
+      padding-bottom: 5px !important;
+      border: none;
+      border-bottom: 2px solid #e5e4e4;
+
+      &[name=phone]{
+        padding-left: 0;
+      }
+    }
+
+    a {
+      color: #6ac0d6;
+      text-decoration: none;
+    }
+
+    img {
+      position: absolute;
+      margin-left: 10px;
+      margin-top: 5px;
+    }
+
+    .md-button {
+      margin-top: 35px;
+      background-color: #333647 !important;
+      color: white;
+      height: 50px;
+      font-weight: bolder;
+      box-shadow: none !important;
+    }
+  }
+}
+

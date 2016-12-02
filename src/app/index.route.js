@@ -4,56 +4,29 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('login', {
     url: '/login',
-    templateUrl: 'app/views/login.html',
+    templateUrl: 'app/components/login/view.html',
     controller: 'LoginController',
     controllerAs: 'ctrl'
   })
-  .state('roadList', {
+  .state('home', {
     url: '/',
-    templateUrl: 'app/views/roadList.html',
-    controller: 'RoadListController',
-    controllerAs: 'ctrl',
-    data: {
-      schema: [
-        {title: 'name', value: '', type: 'text'}
-      ],
-      child: 'tollRoad'
-    }
+    templateUrl: 'app/components/home/view.html',
+    controller: 'HomeController',
+    controllerAs: 'ctrl'
   })
-  .state('tollRoad', {
-    url: '/tollRoad/{_id}',
-    templateUrl: 'app/views/entity.html',
-    controller: 'EntityController',
-    controllerAs: 'ctrl',
-    data: {
-      schema: [
-        {title: 'name', value: '', type: 'text'},
-        {title: 'latitude', value: 0, type: 'number'},
-        {title: 'longitude', value: 0, type: 'number'}
-      ],
-      thead: ['Way Point name', 'Latitude', 'Longitude'],
-      tbody: ['name', 'latitude', 'longitude'],
-      child: 'wayPoint',
-      back: 'home'
-    }
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'app/components/settings/view.html',
+    controller: 'SettingsController',
+    controllerAs: 'ctrl'
   })
-  .state('wayPoint', {
-    url: '/wayPoint/{_id}',
-    templateUrl: 'app/views/entity.html',
-    controller: 'EntityController',
-    controllerAs: 'ctrl',
-    data: {
-      schema: [
-        {title: 'name', value: '', type: 'text'},
-        {title: 'latitude', value: 0, type: 'number'},
-        {title: 'longitude', value: 0, type: 'number'},
-        {title: 'action', value: 'exit', type: 'select', options: ['entrance','bridge','exit']}
-      ],
-      thead: ['Toll Point name', 'Latitude', 'Longitude', 'Action'],
-      tbody: ['name', 'latitude', 'longitude', 'action'],
-      child: 'tollPoint'
-    }
+  .state('paymentHistory', {
+    url: '/paymentHistory',
+    templateUrl: 'app/components/paymentHistory/view.html',
+    controller: 'PaymentHistoryController',
+    controllerAs: 'ctrl'
   });
+
 
   $urlRouterProvider.otherwise('/');
 }

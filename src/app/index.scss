@@ -19,33 +19,14 @@
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
+[ng-cloak] {
+  display: none !important;
 }
 
+.md-select-value *:first-child { overflow: visible !important;}
+
 html {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 [layout=row] {
@@ -68,11 +49,44 @@ i {
 }
 
 .rootHeader {
-  background-color: #607d8b;
-  .md-button, h2 {
+  background-color: #41455b;
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    img {
+      width: 50px;
+      border-radius: 50%;
+    }
+  }
+  .md-button, img {
     padding: 0 20px;
     color: white;
   }
+
+  .root-menu {
+    width: 50px;
+    height: 80px;
+    font-size: 28px;
+    i {
+      color: #6a78ac;
+    }
+  }
+  .avatar-button {
+    padding-top: 15px;
+    i {
+      color: white;
+      margin-left: -30px;
+      position: absolute;
+      margin-top: 40px;
+    }
+  }
+}
+
+md-menu-item > a.md-button {
+  align-items: center !important;
 }
 
 .capitalize {
@@ -95,7 +109,7 @@ md-toolbar.md-default-theme {
 }
 
 .wrapper {
-  max-width: 980px;
+  max-width: 1280px;
   margin: 20px auto;
   padding: 20px;
   .create {
@@ -111,29 +125,8 @@ md-input-container {
   margin: 7px 0;
 }
 
-md-dialog {
-  max-width: 400px;
-  .loader, .map {
-    height: 275px;
-  }
-  md-dialog-content {
-    overflow: hidden;
-  }
-}
 
-.modal-buttons {
-  justify-content: space-between;
-}
 
-.modal-waypoint {
-  .md-dialog-content {
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
 
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject

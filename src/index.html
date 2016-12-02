@@ -1,10 +1,11 @@
 <!doctype html>
-<html ng-app="tollminderAdmin" ng-strict-di>
+<html ng-app="tollminderPortal" ng-cloak ng-strict-di>
   <head>
     <meta charset="utf-8">
-    <title>tollminderAdmin</title>
+    <title>tollminderPortal</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="http://use.fontawesome.com/a3f755cede.js"></script>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -28,9 +29,63 @@
     <div ng-controller="RootController as root">
       <div layout="row"
            layout-align="space-between"
+           ng-if="root.isAuth()"
            class="rootHeader">
-        <h2>TollMinder</h2>
-        <md-button ng-click="root.logout()">Logout</md-button>
+        <md-button ui-sref="home" layout="row" layout-align="center center">
+          <img src="./assets/text-logo.png" alt="">
+        </md-button>
+        <nav>
+          <md-menu ng-if="root.isAuth()"
+                   md-position-mode="target-right target" >
+            <md-button ng-click="$mdOpenMenu($event)" class="avatar-button">
+              <img src="{{root.user.photo}}"
+                   class="root-avatar">
+              <i class="fa fa-arrow-circle-down"></i>
+            </md-button>
+            <md-menu-content width="3" >
+              <md-menu-item>
+                <md-button ui-sref="settings">
+                  <div layout="row" layout-align="space-between center" flex>
+                    <p flex>Settings</p>
+                    <i class="fa fa-cogs"></i>
+                  </div>
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ui-sref="paymentHistory">
+                  <div layout="row" layout-align="space-between center" flex>
+                    <p flex>Payment History</p>
+                    <i class="fa fa-history"></i>
+                  </div>
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="root.logout()">
+                  <div layout="row" layout-align="space-between center" flex>
+                    <p flex>Logout</p>
+                    <i class="fa fa-sign-out"></i>
+                  </div>
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+          <md-menu ng-if="false"
+                   md-position-mode="target-right target">
+            <!--root.isAuth()-->
+            <md-button ng-click="$mdOpenMenu($event)" class="root-menu">
+              <i class="fa fa-bars"></i>
+            </md-button>
+            <md-menu-content width="4" >
+              <md-menu-item ng-repeat="item in [1, 2, 3]">
+                <md-button ng-click="">
+                  <div layout="row" flex>
+                    <p flex>Option {{item}}</p>
+                  </div>
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </nav>
       </div>
       <div ui-view></div>
     </div>

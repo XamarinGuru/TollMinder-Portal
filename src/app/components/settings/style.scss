@@ -1,0 +1,143 @@
+.settings-form {
+  padding: 40px 0;
+
+  .input3 {
+    width: 1100px;
+  }
+  md-input-container {
+    max-width: 280px;
+
+    label {
+      color: #18bdbb !important;
+    }
+  }
+
+  .edit {
+    display: flex;
+    justify-content: space-around;
+    height: 35px;
+    background-color: white;
+    color: #dadada;
+    border: 1px solid #dadada;
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 165px;
+    padding-right: 10px;
+    i {
+      margin: 0 10px;
+      color: #dadada;
+    }
+
+    &:hover {
+      color: black;
+      i {
+        color: black;
+      }
+    }
+
+    &.save-profile {
+      background-color: #607d8b;
+      color: #fff;
+      i {
+        color: #fff;
+      }
+    }
+  }
+
+
+
+  .photo {
+    margin-right: 45px;
+    .change-avatar {
+      position: absolute;
+      margin-top: -125px;
+      margin-left: 0;
+      width: 120px;
+      height: 120px;
+      font-size: 60px;
+      border-radius: 50%;
+      .md-ripple-container {
+        border-radius: 50% !important;
+      }
+      i {
+        display: none;
+        -webkit-transition: display 1s;
+        -moz-transition: display 1s;
+        -ms-transition: display 1s;
+        -o-transition: display 1s;
+        transition: display 1s;
+      }
+      &:hover {
+        i {
+          display: block;
+        }
+      }
+    }
+    img {
+      width: 120px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.billing {
+  padding: 40px 0;
+  margin-left: 165px;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    color: #35c2c0;
+    margin-bottom: 50px;
+  }
+
+  label {
+    text-transform: uppercase;
+    font-weight: bolder;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    font-size: 14px;
+
+    input {
+      background-color: #f1f1f1;
+      width: 260px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      border-top: 2px inset rgba(230, 230, 230, 0.2);
+
+      &[name=cardMonth] {
+        width: 80px;
+      }
+
+      &[name=cardYear] {
+        width: 100px;
+      }
+    }
+  }
+
+  .switch {
+    justify-content: flex-start;
+    align-items: center;
+    md-switch { margin-left: 20px; }
+    md-switch.md-checked.md-primary .md-thumb {
+      background-color: #35c2c0 !important;
+    }
+  }
+  .save {
+    width: 240px !important;
+    height: 50px;
+    font-weight: bolder;
+    background-color: #333647 !important;
+    box-shadow: none !important;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+}
+
+

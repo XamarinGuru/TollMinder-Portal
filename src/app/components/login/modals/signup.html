@@ -1,0 +1,86 @@
+<md-dialog class="login">
+  <form name="dialog.form2"
+        ng-submit="dialog.signup()"
+        novalidate>
+    <md-toolbar layout="row">
+      <h4>Sign Up</h4>
+      <md-button class="md-icon-button close" ng-click="dialog.hideDialog()">
+        <i class="fa fa-times-circle"></i>
+      </md-button>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-input-container flex md-no-float>
+        <img src="./../../../../assets/user-icon.png" alt="">
+        <input type="text"
+               placeholder="Full Name"
+               name="name"
+               ng-model="dialog.signupModel.name"
+               readonly
+               onfocus="this.removeAttribute('readonly')">
+      </md-input-container>
+      <md-input-container flex md-no-float>
+        <img src="./../../../../assets/mail-icon.png">
+        <input type="email"
+               placeholder="Email *"
+               name="email"
+               ng-model="dialog.signupModel.email"
+               readonly
+               required
+               onfocus="this.removeAttribute('readonly')">
+        <div ng-messages="dialog.form2.email.$error">
+          <div ng-message="required">
+            This field is required
+          </div>
+        </div>
+      </md-input-container>
+      <md-input-container flex md-no-float>
+        <img src="./../../../../assets/pass-icon.png" />
+        <input type="password"
+               placeholder="Password *"
+               name="password"
+               ng-model="dialog.signupModel.password"
+               readonly
+               required
+               minlength=8
+               maxlength=32
+               onfocus="this.removeAttribute('readonly')">
+        <div ng-messages="dialog.form2.password.$error" md-auto-hide="true">
+          <div ng-message-exp="['required', 'minlength', 'maxlength']">
+            Password must be between 8 and 32 characters long
+          </div>
+        </div>
+      </md-input-container>
+      <div layout="row">
+        <md-input-container class="select">
+          <img src="./../../../../assets/phone-icon.png" alt="">
+          <md-select name="country"
+                     ng-model="dialog.country"
+                     md-selected-text="dialog.country.flag"
+                     required>
+            <md-option ng-repeat="country in dialog.countries"
+                       ng-value="country">
+              {{country.title}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container md-no-float>
+          <input type="text"
+                 ng-model="dialog.signupModel.phone"
+                 name="phone"
+                 readonly
+                 required
+                 onfocus="this.removeAttribute('readonly')"
+                 ui-mask="{{dialog.country.mask}}">
+          <div ng-messages="dialog.form2.phone.$error">
+            <div ng-message="required" md-auto-hide="true">
+              This field is required
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <md-button type="submit" class="md-raised md-primary">
+        Sign up
+      </md-button>
+    </md-dialog-content>
+  </form>
+</md-dialog>

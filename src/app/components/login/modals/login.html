@@ -1,0 +1,65 @@
+<md-dialog class="login">
+  <form name="dialog.form1"
+        ng-submit="dialog.signin()"
+        novalidate>
+    <md-toolbar layout="row">
+      <h4>Login</h4>
+      <md-button class="md-icon-button close" ng-click="dialog.hideDialog()">
+        <i class="fa fa-times-circle"></i>
+      </md-button>
+    </md-toolbar>
+    <md-dialog-content>
+      <div layout="row">
+        <md-input-container class="select">
+          <img src="./../../../../assets/phone-icon.png" alt="">
+          <md-select name="country"
+                     ng-model="dialog.country"
+                     md-selected-text="dialog.country.flag"
+                     required>
+            <md-option ng-repeat="country in dialog.countries"
+                       ng-value="country">
+              {{country.title}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container md-no-float>
+
+          <input type="text"
+                 ng-model="dialog.signinModel.phone"
+                 name="phone"
+                 readonly
+                 required
+                 onfocus="this.removeAttribute('readonly')"
+                 ui-mask="{{dialog.country.mask}}">
+          <div ng-messages="dialog.form1.phone.$error" >
+            <div ng-message="required">
+              This field is required
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+      <md-input-container flex md-no-float>
+        <img src="./../../../../assets/pass-icon.png" alt="">
+        <input type="password"
+               placeholder="Password"
+               name="password"
+               ng-model="dialog.signinModel.password"
+               readonly
+               required
+               onfocus="this.removeAttribute('readonly')">
+        <div ng-messages="dialog.form1.phone.$error" >
+          <div ng-message="required">
+            This field is required
+          </div>
+        </div>
+      </md-input-container>
+      <div layout="row" layout-align="space-between center">
+        <span></span>
+        <a href="#">Forgot Password?</a>
+      </div>
+      <md-button type='submit' class="md-raised md-primary">
+        Login
+      </md-button>
+    </md-dialog-content>
+  </form>
+</md-dialog>

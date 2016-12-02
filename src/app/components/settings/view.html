@@ -1,0 +1,112 @@
+<div class="wrapper">
+  <form name="ctrl.form"
+        class="settings-form"
+        layout="column"
+        layout-align="space-between flex-start"
+        ng-submit="ctrl.save()"
+        novalidate>
+    <div layout="row" >
+      <div class="photo">
+        <img src="{{ctrl.user.photo}}">
+        <md-button class="change-avatar">
+          <i class="fa fa-pencil"></i>
+        </md-button>
+      </div>
+      <div layout="row" layout-align="space-between center" class="input3">
+        <md-input-container>
+          <label>Name</label>
+          <input type="text"
+                 name="name"
+                 ng-model="ctrl.user.name"
+                 ng-disabled="!ctrl.editMode"
+                 required>
+          <div ng-messages="ctrl.form.name.$error">
+            <div ng-message="required">
+              This field is required
+            </div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Email</label>
+          <input type="text"
+                 name="email"
+                 ng-model="ctrl.user.email"
+                 ng-disabled="!ctrl.editMode"
+                 required>
+          <div ng-messages="ctrl.form.email.$error">
+            <div ng-message="required">
+              This field is required
+            </div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Phone <i> (you cannot change this)</i></label>
+          <input type="text"
+                 readonly
+                 value="{{'+' + ctrl.user.phone}}"
+                 required>
+          <div ng-messages="ctrl.form.name.$error">
+            <div ng-message="ctrl.user.phoneValidate">
+              Not validate!
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+    </div>
+    <md-button class="edit"
+               ng-if="!ctrl.editMode"
+               ng-click="ctrl.toggleEditMode()">
+      <i class="fa fa-pencil"></i>
+      Edit Profile
+    </md-button>
+    <md-button class="edit save-profile"
+               ng-if="ctrl.editMode"
+               ng-click="ctrl.toggleEditMode()">
+      <i class="fa fa-save"></i>
+      Save
+    </md-button>
+  </form>
+  <form class="billing" name="ctrl.billing">
+    <h3>Enter your Payment Information</h3>
+    <label>
+      Cards we assept:
+      <img src="../../../assets/visa.png" />
+      <img src="../../../assets/amex.png" />
+      <img src="../../../assets/mastercard.png" />
+      <img src="../../../assets/discover.png" />
+    </label>
+    <label>
+      Card Number:
+      <input type="text"
+             name="cardNumber"
+             ng-model="ctrl.cardNumber"
+             placeholder="xxxx - xxxx - xxxx - xxxx"
+             ui-mask="9999 - 9999 - 9999 - 9999"
+             required>
+    </label>
+    <label>
+      Exp. Date:
+      <input type="number"
+             name="cardMonth"
+             ng-model="ctrl.cardMonth">
+      <input type="number"
+             name="cardYear"
+             ng-model="ctrl.cardYear">
+    </label>
+    <label>
+      Security code:
+      <input type="password"
+             name="cardCvv"
+             maxlength="3"
+             ng-model="ctrl.cardCvv">
+    </label>
+    <label class="switch">
+      Automatic payment:
+      <md-switch ng-model="ctrl.autoPayment" class="md-primary">
+      </md-switch>
+    </label>
+    <md-button class="md-raised md-primary save ">
+      Save credit card
+    </md-button>
+  </form>
+</div>

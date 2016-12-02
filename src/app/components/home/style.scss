@@ -1,0 +1,14 @@
+.home-wrapper {
+  background-color: #41455b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 106px);
+  p {
+    margin: 40px;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+  }
+}
