@@ -28,8 +28,8 @@ angular.module('tollminderPortal',
     'ngContextMenu'
   ])
 
-//.constant('API', 'http://54.152.103.212/api')
-.constant('API', 'http://192.168.13.118:7000/api')
+// .constant('API', 'http://tollminder.com/api')
+.constant('API', 'http://localhost:7001/api')
 .constant('G_API_Key', 'AIzaSyA3bW45fzOFxRkt23VXQlG0W7Oy9Ud8M_g')
 .constant('COUNTRIES', countries)
 

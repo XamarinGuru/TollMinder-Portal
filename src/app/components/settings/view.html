@@ -3,14 +3,11 @@
         class="settings-form"
         layout="column"
         layout-align="space-between flex-start"
-        ng-submit="ctrl.save()"
+        ng-submit="ctrl.saveUser()"
         novalidate>
     <div layout="row" >
       <div class="photo">
         <img src="{{ctrl.user.photo}}">
-        <md-button class="change-avatar">
-          <i class="fa fa-pencil"></i>
-        </md-button>
       </div>
       <div layout="row" layout-align="space-between center" class="input3">
         <md-input-container>
@@ -53,60 +50,70 @@
         </md-input-container>
       </div>
     </div>
-    <md-button class="edit"
-               ng-if="!ctrl.editMode"
-               ng-click="ctrl.toggleEditMode()">
-      <i class="fa fa-pencil"></i>
-      Edit Profile
-    </md-button>
-    <md-button class="edit save-profile"
-               ng-if="ctrl.editMode"
-               ng-click="ctrl.toggleEditMode()">
-      <i class="fa fa-save"></i>
-      Save
-    </md-button>
+    <div class="buttons">
+      <md-button class="edit"
+                 ng-if="!ctrl.editMode"
+                 ng-click="ctrl.toggleEditMode()">
+        <i class="fa fa-pencil"></i>
+        Edit Profile
+      </md-button>
+      <md-button class="edit save-profile"
+                 ng-if="ctrl.editMode"
+                 ng-disabled="!ctrl.userEditLoaded"
+                 type="submit">
+        <i class="fa fa-save"></i>
+        Save
+      </md-button>
+      <md-progress-circular md-mode="indeterminate"
+                            ng-show="!ctrl.userEditLoaded">
+      </md-progress-circular>
+    </div>
   </form>
-  <form class="billing" name="ctrl.billing">
-    <h3>Enter your Payment Information</h3>
-    <label>
-      Cards we assept:
-      <img src="../../../assets/visa.png" />
-      <img src="../../../assets/amex.png" />
-      <img src="../../../assets/mastercard.png" />
-      <img src="../../../assets/discover.png" />
-    </label>
-    <label>
-      Card Number:
-      <input type="text"
-             name="cardNumber"
-             ng-model="ctrl.cardNumber"
-             placeholder="xxxx - xxxx - xxxx - xxxx"
-             ui-mask="9999 - 9999 - 9999 - 9999"
-             required>
-    </label>
-    <label>
-      Exp. Date:
-      <input type="number"
-             name="cardMonth"
-             ng-model="ctrl.cardMonth">
-      <input type="number"
-             name="cardYear"
-             ng-model="ctrl.cardYear">
-    </label>
-    <label>
-      Security code:
-      <input type="password"
-             name="cardCvv"
-             maxlength="3"
-             ng-model="ctrl.cardCvv">
-    </label>
-    <label class="switch">
-      Automatic payment:
-      <md-switch ng-model="ctrl.autoPayment" class="md-primary">
-      </md-switch>
-    </label>
-    <md-button class="md-raised md-primary save ">
-      Save credit card
-    </md-button>
-  </form>
+  <!--<form class="billing"-->
+        <!--name="ctrl.billing"-->
+        <!--ng-submit="ctrl.savePaymentInfo()">-->
+    <!--<h3>Enter your Payment Information</h3>-->
+    <!--<label>-->
+      <!--Cards we assept:-->
+      <!--<img src="../../../assets/visa.png" />-->
+      <!--<img src="../../../assets/amex.png" />-->
+      <!--<img src="../../../assets/mastercard.png" />-->
+      <!--<img src="../../../assets/discover.png" />-->
+    <!--</label>-->
+    <!--<label>-->
+      <!--Card Number:-->
+      <!--<input type="text"-->
+             <!--name="cardNumber"-->
+             <!--ng-model="ctrl.cardNumber"-->
+             <!--placeholder="xxxx - xxxx - xxxx - xxxx"-->
+             <!--ui-mask="9999 - 9999 - 9999 - 9999"-->
+             <!--required>-->
+    <!--</label>-->
+    <!--<label>-->
+      <!--Exp. Date:-->
+      <!--<input type="number"-->
+             <!--name="cardMonth"-->
+             <!--ng-model="ctrl.cardMonth">-->
+      <!--<input type="number"-->
+             <!--name="cardYear"-->
+             <!--ng-model="ctrl.cardYear">-->
+    <!--</label>-->
+    <!--<label>-->
+      <!--Security code:-->
+      <!--<input type="password"-->
+             <!--name="cardCvv"-->
+             <!--maxlength="3"-->
+             <!--required-->
+             <!--ng-model="ctrl.cardCvv">-->
+    <!--</label>-->
+    <!--<label class="switch">-->
+      <!--Automatic payment:-->
+      <!--<md-switch ng-model="ctrl.autoPayment" class="md-primary">-->
+      <!--</md-switch>-->
+    <!--</label>-->
+    <!--<md-button type="submit"-->
+               <!--class="md-raised md-primary save ">-->
+      <!--Save credit card-->
+    <!--</md-button>-->
+  <!--</form>-->
 </div>

@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <base href="/">
     <script src="http://use.fontawesome.com/a3f755cede.js"></script>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -38,9 +39,7 @@
           <md-menu ng-if="root.isAuth()"
                    md-position-mode="target-right target" >
             <md-button ng-click="$mdOpenMenu($event)" class="avatar-button">
-              <img src="{{root.user.photo}}"
-                   class="root-avatar">
-              <i class="fa fa-arrow-circle-down"></i>
+              <i class="root-avatar fa fa-user-circle "></i>
             </md-button>
             <md-menu-content width="3" >
               <md-menu-item>

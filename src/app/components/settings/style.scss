@@ -11,40 +11,18 @@
       color: #18bdbb !important;
     }
   }
-
-  .edit {
+  .buttons {
     display: flex;
-    justify-content: space-around;
-    height: 35px;
-    background-color: white;
-    color: #dadada;
-    border: 1px solid #dadada;
-    position: absolute;
-    margin-top: 80px;
-    margin-left: 165px;
-    padding-right: 10px;
-    i {
-      margin: 0 10px;
-      color: #dadada;
-    }
-
-    &:hover {
-      color: black;
-      i {
-        color: black;
-      }
-    }
-
-    &.save-profile {
-      background-color: #607d8b;
-      color: #fff;
-      i {
-        color: #fff;
-      }
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 160px;
+    margin-top: -50px;
+    md-progress-circular {
+      display: block;
+      position: relative;
     }
   }
-
-
 
   .photo {
     margin-right: 45px;
@@ -137,6 +115,7 @@
     color: #fff;
     border-radius: 5px;
   }
+
 
 }
 

@@ -1,6 +1,6 @@
-export function routerConfig($stateProvider, $urlRouterProvider) {
+export function routerConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   'ngInject';
-  $urlRouterProvider.html5Mode = true;
+  $locationProvider.html5Mode({enabled: true});
   $stateProvider
   .state('login', {
     url: '/login',
@@ -25,8 +25,11 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
     templateUrl: 'app/components/paymentHistory/view.html',
     controller: 'PaymentHistoryController',
     controllerAs: 'ctrl'
+  })
+  .state('privacyPolicy', {
+    url: '/privacyPolicy',
+    templateUrl: 'app/components/privacyPolicy/view.html',
   });
-
 
   $urlRouterProvider.otherwise('/');
 }

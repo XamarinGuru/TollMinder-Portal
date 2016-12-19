@@ -1,9 +1,12 @@
 export class SettingsController {
-  constructor($state, $log, CrudService) {
+  constructor($state, $log, CrudService, $mdDialog) {
     'ngInject';
     this.state = $state;
     this.log = $log;
     this.Crud = CrudService;
+    this.dialog = $mdDialog;
+
+    this.userEditLoaded = true;
 
     this.editMode = false;
     this.cardNumber = '';
@@ -24,14 +27,24 @@ export class SettingsController {
     this.editMode = !this.editMode;
   }
 
-  avatarUpload() {
-
+  saveUser() {
+    if (this.form.$valid) {
+      this.userEditLoaded = false;
+      this.log.debug(this.form);
+      this.Crud.save('user', this.user, true)
+      .then(_ => {
+        this.editMode = !this.editMode;
+        this.userEditLoaded = true;
+      })
+    }
   }
 
-  save() {
-    if (this.form.$valid) {
-      this.log.debug(this.form);
-      this.editMode = !this.editMode;
-    }
+  savePaymentInfo() {
+    this.dialog.show(
+      this.dialog.alert()
+      .title('Error')
+      .textContent('This feature is currently unavailable')
+      .ok('OK')
+    );
   }
 }
