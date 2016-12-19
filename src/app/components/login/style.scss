@@ -38,8 +38,11 @@
       text-transform: capitalize;
       display: flex;
       flex-direction: row;
-
       align-items: center;
+
+      span {
+        display: block;
+      }
 
       img {
         width: 32px;

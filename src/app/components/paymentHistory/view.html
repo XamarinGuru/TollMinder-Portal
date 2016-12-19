@@ -1,11 +1,18 @@
 <div class="wrapper">
-  <md-table-container>
+  <div layout="row" layout-align="space-between">
+    <span></span>
+    <md-button class="md-primary"
+               ng-click="ctrl.downloadPDF()">
+      <i class="fa fa-download"></i> Download PDF
+    </md-button>
+  </div>
+  <md-table-container id="pdf">
     <table md-table class="paymentTable">
       <thead md-head>
       <tr md-row>
         <th md-column md-checkbox-column>
-          <md-checkbox>
-
+          <md-checkbox ng-change="ctrl.checkAll()"
+                       ng-model="ctrl.checkedAll">
           </md-checkbox>
         </th>
         <th md-column><span>TollRoad</span></th>
@@ -14,28 +21,19 @@
         <th md-column><span>Tolls</span></th>
         <th md-column><span>Processing Fees</span></th>
         <th md-column md-numeric><span>Amount</span></th>
-        <th md-column md-numeric><span></span></th>
       </tr>
       </thead>
       <tbody md-body>
       <tr md-row md-select="event" md-select-id="_id" ng-repeat="event in ctrl.history">
         <td md-cell md-checkbox-cell>
-          <md-checkbox></md-checkbox>
+          <md-checkbox ng-model="event.checked" ng-change="ctrl.checkAny()"></md-checkbox>
         </td>
         <td md-cell>{{event._tollRoad.name}}</td>
         <td md-cell>{{event._tollRoad.state}}</td>
-        <td md-cell>{{event.actionDate}}</td>
+        <td md-cell>{{event.actionDate | date : 'medium'}}</td>
         <td md-cell>{{event.tolls | currency}}</td>
         <td md-cell>{{event.commission | currency}}</td>
         <td md-cell>{{event.tolls + event.commission | currency}}</td>
-        <td md-cell>
-          <md-button class="md-primary">
-            Pay
-          </md-button>
-          <md-button class="md-warn">
-            Ignore
-          </md-button>
-        </td>
       </tr>
       </tbody>
     </table>
@@ -48,20 +46,28 @@
   </md-table-pagination>
 
   <div layout="row" class="total">
-    Total tolls and fees:
     <div>
-      <span>Tolls:</span>
-      {{ctrl.totalTolls | currency}}
-    </div>
-    <div>
-      <span>Processing fees:</span>
-      {{ctrl.totalCommission | currency}}
-    </div>
-    <div>
-      <span>Amount:</span>
-      {{ctrl.totalTolls + ctrl.totalCommission | currency}}
+      Total tolls and fees:
+      <div>
+        <span>Tolls:</span>
+        {{ctrl.totalTolls | currency}}
+      </div>
+      <div>
+        <span>Processing fees:</span>
+        {{ctrl.totalCommission | currency}}
+      </div>
+      <div>
+        <span>Amount:</span>
+        {{ctrl.totalTolls + ctrl.totalCommission | currency}}
+      </div>
     </div>
 
+    <md-button class="md-primary"
+               ng-click="ctrl.payChecked()"
+               ng-disabled="!ctrl.checkedAny">
+      Pay selected
+    </md-button>
   </div>
+
 
 </div>

@@ -20,28 +20,36 @@ export class LoginService {
   }
 
   gPlusOAuth() {
-    let authToken;
-    this.oAuth.gPlus.login()
-    .then(authResult => {
-      this.log.debug(authResult);
-      authToken = authResult.access_token;
-      return this.oAuth.gPlus.getUser();
+    return new Promise((resolve, reject) => {
+      let u;
+      this.oAuth.gPlus.login()
+      .then(authResult => this.oAuth.gPlus.getUser())
+      .then(user => {
+        let {email, name, picture} = user;
+        u = {email, photo: picture, name, source: 'gplus'};
+        return this.http.post(`${this.API}/user/oauth`, u)
+      })
+      .then(resolve)
+      .catch(_ => reject(u));
     })
-    .then(user => {
-      this.log.debug(user);
-      return this.http({
-        method: 'get',
-        url: 'https://www.googleapis.com/userinfo/v2/me',
-        headers: {
-          'Authorization' : `Bearer ${authToken}`
-        }
-      });
-    })
-    .then(this.log.debug)
-    .catch(this.log.error)
+
   }
 
   facebookOAuth() {
-    this.oAuth.facebook.login((res) => this.log.debug(res));
+    return new Promise((resolve, reject) => {
+      this.oAuth.facebook.getLoginStatus(resp => {
+        if (resp.status != 'connected') {
+          this.oAuth.facebook.login(_ => {
+            this.oAuth.facebook.api('/me?fields=email,name', (u) => {
+              let {name, email} = u;
+              return this.http.post(`${this.API}/user/oauth`, {email, name, })
+            });
+          });
+        } else {
+          return this.oAuth.facebook.api('/me?fields=email,name', resolve);
+        }
+      })
+    });
+
   }
 }

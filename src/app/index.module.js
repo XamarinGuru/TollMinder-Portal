@@ -29,7 +29,11 @@ angular.module('tollminderPortal',
 
   ])
 
+<<<<<<< HEAD
 //.constant('API', 'http://54.152.103.212/api')
+=======
+// .constant('API', 'http://tollminder.com/api')
+>>>>>>> 4dd112f0f6ad688c3897aa13d9cd0753c72cc3fe
 .constant('API', 'http://localhost:7001/api')
 .constant('G_API_Key', 'AIzaSyA3bW45fzOFxRkt23VXQlG0W7Oy9Ud8M_g')
 .constant('COUNTRIES', countries)

@@ -16,9 +16,9 @@ export function config (
   GooglePlusProvider.init({
     clientId: '897629688707-nvjhq4nkgmqej70i8icfbabjlrcbk9rh.apps.googleusercontent.com'
   });
-  GooglePlusProvider.setScopes('https://www.googleapis.com/auth/plus.profile.emails.read');
+  GooglePlusProvider.setScopes('https://www.googleapis.com/auth/userinfo.email');
 
-  FacebookProvider.init('1140342102670154')
+  FacebookProvider.init('366792763673023')
 }
 
 function authInterceptor() {
