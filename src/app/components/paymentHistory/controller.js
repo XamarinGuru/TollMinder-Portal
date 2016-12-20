@@ -1,5 +1,5 @@
 export class PaymentHistoryController {
-  constructor($state, $log, PaymentHistoryService, $mdDialog, $window, $timeout) {
+  constructor($state, $log, PaymentHistoryService, $mdDialog, $window, $timeout, $scope) {
     'ngInject';
     this.state = $state;
     this.log = $log;
@@ -9,11 +9,13 @@ export class PaymentHistoryController {
     this.timeout = $timeout;
 
     this.page = 1;
-    this.limit = 5;
-    this.checkedAll = false;
-    this.checkedAny = false;
+    this.limit = 10;
 
     this.history = [];
+    this.filteredHistory = [];
+    this.dateTo = new Date();
+    this.dateFrom = new Date('10.1.2016');
+    this.showCurrent = true;
     this.getPaymentHistory();
   }
 
@@ -24,52 +26,28 @@ export class PaymentHistoryController {
         item.checked = false;
         return item;
       });
+      this.selectDateRange();
     })
     .catch(this.log.error);
-    this.checkAny();
+
   }
 
-  checkAll() {
-    this.history.map(item => item.checked = this.checkedAll);
-    this.checkAny();
-  }
-
-  checkAny() {
-    let flag = false;
-    this.history.map(item => {
-      if (item.checked) flag = true;
+  selectDateRange() {
+    this.filteredHistory = this.history.filter(item => {
+        return item.billingDate <= this.dateTo && item.billingDate >= this.dateFrom;
     });
-    this.checkedAny = flag ? true : false;
-    this.calculateTollsAndCommission();
+
   }
 
-  calculateTollsAndCommission() {
-    this.totalTolls = this.history.reduce((prev, curr) => {
-      if (curr.checked) return prev + curr.tolls;
-      return prev;
-    }, 0);
-    this.totalCommission = this.history.reduce((prev, curr) => {
-      if (curr.checked) return prev + curr.commission;
-      return prev;
-    }, 0);
-  }
-
-  payChecked() {
-    this.dialog.show(
-      this.dialog.alert()
-      .title('Error')
-      .textContent('This feature is currently unavailable')
-      .ok('OK')
-    );
-  }
 
   downloadPDF() {
     let html = document.getElementById('pdf').innerHTML;
     this.Service.convertHtmlToPdf(html)
     .then(res => {
+      debugger;
       let {link} = res.data;
       this.window.open(link);
-      this.timeout(() => this.Service.deleteFile(link.split('/uploads/')[1]), 5000);
+      // this.timeout(() => this.Service.deleteFile(link.split('/uploads/')[1]), 5000);
     })
     .catch(this.log.error);
   }
