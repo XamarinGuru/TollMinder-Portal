@@ -11,12 +11,9 @@ export class RootController {
   }
 
   isAuth() {
-<<<<<<< HEAD
-    this.user = localStorage.user ? JSON.parse(localStorage.user) : false
-    return this.user;
-=======
-    this.user = localStorage.user ? JSON.parse(localStorage.user) : null;
-    return localStorage.authToken ? true : false;
->>>>>>> 4dd112f0f6ad688c3897aa13d9cd0753c72cc3fe
+    this.user = localStorage.user ? JSON.parse(localStorage.user) : false;
+    return this.user ? true : false;
+    // this.user = localStorage.user ? JSON.parse(localStorage.user) : null;
+    // return localStorage.authToken ? true : false;
   }
 }

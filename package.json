@@ -5,13 +5,8 @@
   "scripts": {
     "test": "gulp test",
     "build": "gulp clean && gulp build",
-<<<<<<< HEAD
     "deploy": "./deploy.sh",
     "buildAndDeploy": "npm run build && npm run deploy"
-=======
-    "deploy" : "./deploy.sh",
-    "buildAndDeploy": "npm run build && npm run deploy && gulp clean"
->>>>>>> 4dd112f0f6ad688c3897aa13d9cd0753c72cc3fe
   },
   "devDependencies": {
     "babel-core": "~6.7.4",

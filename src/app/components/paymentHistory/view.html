@@ -1,38 +1,40 @@
 <div class="wrapper">
-  <div layout="row" layout-align="space-between">
-    <span></span>
-    <md-button class="md-primary"
-               ng-click="ctrl.downloadPDF()">
-      <i class="fa fa-download"></i> Download PDF
-    </md-button>
+  <div layout="row" layout-align="space-between center">
+    <div layout="row" layout-align="center center">
+      <label>From</label>
+      <md-datepicker ng-model="ctrl.dateFrom"></md-datepicker>
+      <div class="space"></div>
+      <label>To: </label>
+      <md-datepicker ng-model="ctrl.dateTo"></md-datepicker>
+      <md-button ng-click="ctrl.selectDateRange()">Submit</md-button>
+    </div>
+    <div layout="row" layout-align="center center">
+      <md-radio-group ng-model="ctrl.showCurrent" layout="row">
+        <md-radio-button ng-value="true" class="md-primary">Current</md-radio-button>
+        <md-radio-button ng-value="false" class="md-primary">All history</md-radio-button>
+      </md-radio-group>
+      <md-button class="md-primary"
+                 ng-click="ctrl.downloadPDF()">
+        <i class="fa fa-download"></i> Download PDF
+      </md-button>
+    </div>
+
   </div>
   <md-table-container id="pdf">
     <table md-table class="paymentTable">
       <thead md-head>
       <tr md-row>
-        <th md-column md-checkbox-column>
-          <md-checkbox ng-change="ctrl.checkAll()"
-                       ng-model="ctrl.checkedAll">
-          </md-checkbox>
-        </th>
+        <th md-column><span>Billing date</span></th>
+        <th md-column><span>Transaction ID</span></th>
         <th md-column><span>TollRoad</span></th>
-        <th md-column><span>State</span></th>
-        <th md-column><span>Date and time</span></th>
-        <th md-column><span>Tolls</span></th>
-        <th md-column><span>Processing Fees</span></th>
         <th md-column md-numeric><span>Amount</span></th>
       </tr>
       </thead>
       <tbody md-body>
-      <tr md-row md-select="event" md-select-id="_id" ng-repeat="event in ctrl.history">
-        <td md-cell md-checkbox-cell>
-          <md-checkbox ng-model="event.checked" ng-change="ctrl.checkAny()"></md-checkbox>
-        </td>
+      <tr md-row ng-repeat="event in ctrl.filteredHistory | limitTo: ctrl.limit: (ctrl.page - 1) * ctrl.limit">
+        <td md-cell>{{event.billingDate | date: 'medium'}}</td>
+        <td md-cell>{{event.transactionID}}</td>
         <td md-cell>{{event._tollRoad.name}}</td>
-        <td md-cell>{{event._tollRoad.state}}</td>
-        <td md-cell>{{event.actionDate | date : 'medium'}}</td>
-        <td md-cell>{{event.tolls | currency}}</td>
-        <td md-cell>{{event.commission | currency}}</td>
         <td md-cell>{{event.tolls + event.commission | currency}}</td>
       </tr>
       </tbody>
@@ -42,32 +44,7 @@
   <md-table-pagination md-limit="ctrl.limit"
                        md-limit-options="[5, 15, 30]"
                        md-page="ctrl.page"
-                       md-total="{{ctrl.history.length}}">
+                       md-total="{{ctrl.filteredHistory.length}}">
   </md-table-pagination>
-
-  <div layout="row" class="total">
-    <div>
-      Total tolls and fees:
-      <div>
-        <span>Tolls:</span>
-        {{ctrl.totalTolls | currency}}
-      </div>
-      <div>
-        <span>Processing fees:</span>
-        {{ctrl.totalCommission | currency}}
-      </div>
-      <div>
-        <span>Amount:</span>
-        {{ctrl.totalTolls + ctrl.totalCommission | currency}}
-      </div>
-    </div>
-
-    <md-button class="md-primary"
-               ng-click="ctrl.payChecked()"
-               ng-disabled="!ctrl.checkedAny">
-      Pay selected
-    </md-button>
-  </div>
-
 
 </div>
