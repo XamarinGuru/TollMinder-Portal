@@ -247,14 +247,17 @@ export class PaymentHistoryService {
     this.http = $http;
   }
 
-  getPaymentHistory() {
+  getPaymentHistory(from, to) {
     return new Promise((resolve, reject) => {
-      resolve({data: dummyData});
-    })
+      this.http.post(`${this.API}/trip/paymentHistory`, { from: from, to: to, user: localStorage.uId })
+        .then(data => resolve({data: data}));
+    });
   }
 
-  convertHtmlToPdf(html) {
-    return this.http.post(`${this.API}/file/convertHtmlToPdf`, {html});
+  convertDataToPdf(showCurrent, range) {
+    debugger;
+    return this.http.post(`${this.API}/file/convertDataToPdf`,
+        { showAll: !showCurrent, range: range, user: localStorage.uId });
   }
 
   deleteFile(filename) {

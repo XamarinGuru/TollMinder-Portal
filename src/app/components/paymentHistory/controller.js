@@ -1,5 +1,5 @@
 export class PaymentHistoryController {
-  constructor($state, $log, PaymentHistoryService, $mdDialog, $window, $timeout, $scope) {
+  constructor($state, $log, PaymentHistoryService, $mdDialog, $window, $timeout) {
     'ngInject';
     this.state = $state;
     this.log = $log;
@@ -7,7 +7,6 @@ export class PaymentHistoryController {
     this.dialog = $mdDialog;
     this.window = $window;
     this.timeout = $timeout;
-
     this.page = 1;
     this.limit = 10;
 
@@ -20,12 +19,12 @@ export class PaymentHistoryController {
   }
 
   getPaymentHistory() {
-    this.Service.getPaymentHistory()
+    this.Service.getPaymentHistory(this.dateFrom, this.dateTo)
     .then((res) => {
-      this.history = res.data.map(item => {
-        item.checked = false;
+      this.history = res.data.data.trips.map(item => {
         return item;
       });
+      debugger;
       this.selectDateRange();
     })
     .catch(this.log.error);
@@ -34,15 +33,15 @@ export class PaymentHistoryController {
 
   selectDateRange() {
     this.filteredHistory = this.history.filter(item => {
-        return item.billingDate <= this.dateTo && item.billingDate >= this.dateFrom;
+      debugger;
+        return item.paymentDate <= this.dateTo.toISOString() && item.paymentDate >= this.dateFrom.toISOString();
     });
-
+    debugger;
   }
 
 
   downloadPDF() {
-    let html = document.getElementById('pdf').innerHTML;
-    this.Service.convertHtmlToPdf(html)
+    this.Service.convertDataToPdf(this.showCurrent, { from: this.dateFrom, to: this.dateTo})
     .then(res => {
       debugger;
       let {link} = res.data;
