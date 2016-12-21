@@ -8,7 +8,7 @@ export class PaymentHistoryController {
     this.window = $window;
     this.timeout = $timeout;
     this.page = 1;
-    this.limit = 10;
+    this.limit = 5;
 
     this.history = [];
     this.filteredHistory = [];
@@ -24,7 +24,6 @@ export class PaymentHistoryController {
       this.history = res.data.data.trips.map(item => {
         return item;
       });
-      debugger;
       this.selectDateRange();
     })
     .catch(this.log.error);
@@ -33,17 +32,14 @@ export class PaymentHistoryController {
 
   selectDateRange() {
     this.filteredHistory = this.history.filter(item => {
-      debugger;
         return item.paymentDate <= this.dateTo.toISOString() && item.paymentDate >= this.dateFrom.toISOString();
     });
-    debugger;
   }
 
 
   downloadPDF() {
     this.Service.convertDataToPdf(this.showCurrent, { from: this.dateFrom, to: this.dateTo})
     .then(res => {
-      debugger;
       let {link} = res.data;
       this.window.open(link);
       // this.timeout(() => this.Service.deleteFile(link.split('/uploads/')[1]), 5000);
