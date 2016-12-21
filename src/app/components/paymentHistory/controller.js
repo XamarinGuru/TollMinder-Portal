@@ -9,7 +9,7 @@ export class PaymentHistoryController {
     this.timeout = $timeout;
 
     this.page = 1;
-    this.limit = 10;
+    this.limit = 5;
 
     this.history = [];
     this.filteredHistory = [];
@@ -44,7 +44,6 @@ export class PaymentHistoryController {
     let html = document.getElementById('pdf').innerHTML;
     this.Service.convertHtmlToPdf(html)
     .then(res => {
-      debugger;
       let {link} = res.data;
       this.window.open(link);
       // this.timeout(() => this.Service.deleteFile(link.split('/uploads/')[1]), 5000);
