@@ -255,7 +255,7 @@ export class PaymentHistoryService {
   }
 
   convertDataToPdf(showCurrent, range) {
-    return this.http.post(`${this.API}/file/convertDataToPdf`,
+    return this.http.post(`${this.API}/file/paymentHistoryPdf`,
         { showAll: !showCurrent, range: range, user: localStorage.uId });
   }
 
