@@ -33,7 +33,7 @@
       <tbody md-body>
       <tr md-row ng-repeat="event in ctrl.filteredHistory | limitTo: ctrl.limit: (ctrl.page - 1) * ctrl.limit">
         <td md-cell>{{event.paymentDate | date: 'medium'}}</td>
-        <td md-cell>{{event.transactionID}}</td>
+        <td md-cell>{{event._transaction}}</td>
         <td md-cell>{{event._tollRoad.name}}</td>
         <td md-cell>{{event._rate.cost | currency}}</td>
       </tr>
