@@ -29,6 +29,12 @@ export function routerConfig($stateProvider, $urlRouterProvider, $locationProvid
   .state('privacyPolicy', {
     url: '/privacyPolicy',
     templateUrl: 'app/components/privacyPolicy/view.html',
+  })
+  .state('payment', {
+    url: '/payment',
+    templateUrl: 'app/components/payment/view.html',
+    controller: 'PaymentController',
+    controllerAs: 'ctrl'
   });
 
   $urlRouterProvider.otherwise('/');
