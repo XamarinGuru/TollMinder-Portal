@@ -56,15 +56,16 @@ export class LoginController {
       this.Login.signup(user)
       .then(res => this.auth(res))
       .catch(err => {
-        if (err.status == 302)
+        if (err.status === 302) {
           this.dialog.hide();
           return this.dialog
-          .show(
-            this.dialog.alert()
-            .textContent('This user has already been registered using phone and password')
-            .title('Error!')
-            .ok('Ok')
-          );
+            .show(
+              this.dialog.alert()
+                .textContent('This user has already been registered using phone and password')
+                .title('Error!')
+                .ok('Ok')
+            );
+        }
       })
     }
   }
