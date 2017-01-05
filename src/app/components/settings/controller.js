@@ -17,10 +17,14 @@ export class SettingsController {
     this.getUser();
   }
 
+  //TODO: change after demo to first and last only
   getUser() {
     this.Crud.get('user', localStorage.uId)
-    .then((response) => this.user = response.data)
-    .catch(this.log.error);
+      .then((response) => {
+        this.user = response.data;
+        this.user.name = this.user.name || (this.user.firstname + ' ' + this.user.lastname);
+      })
+      .catch(this.log.error);
   }
 
   toggleEditMode() {
