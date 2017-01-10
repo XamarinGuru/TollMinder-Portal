@@ -21,7 +21,7 @@ export class PaymentHistoryController {
   getPaymentHistory() {
     this.Service.getPaymentHistory(this.dateFrom, this.dateTo)
     .then((res) => {
-      this.history = res.data.data.trips.map(item => {
+      this.history = res.data.data.map(item => {
         return item;
       });
       this.selectDateRange();
