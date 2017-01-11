@@ -40,8 +40,7 @@ export class PaymentHistoryController {
   downloadPDF() {
     this.Service.convertDataToPdf(this.showCurrent, { from: this.dateFrom, to: this.dateTo})
     .then(res => {
-      let {link} = res.data;
-      this.window.open(link);
+      this.window.open(res.data);
       // this.timeout(() => this.Service.deleteFile(link.split('/uploads/')[1]), 5000);
     })
     .catch(this.log.error);
