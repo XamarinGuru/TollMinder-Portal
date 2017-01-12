@@ -34,6 +34,7 @@ export class SettingsController {
   saveUser() {
     if (this.form.$valid) {
       this.userEditLoaded = false;
+      [this.user.fistname, this.user.lastname]= this.user.name.split(' ');
       this.log.debug(this.form);
       this.Crud.save('user', this.user, true)
       .then(_ => {

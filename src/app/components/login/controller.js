@@ -18,7 +18,8 @@ export class LoginController {
       password: ''
     };
     this.signupModel = {
-      name: '',
+      firstname: '',
+      lastname: '',
       email: '',
       password: '',
       phone: ''
@@ -72,9 +73,9 @@ export class LoginController {
 
   signup() {
     if (this.form2.$valid) {
-      let {name, email, password, phone} = this.signupModel;
+      let {firstname, lastname, email, password, phone} = this.signupModel;
       phone = `${this.country.code}${phone}`;
-      this.Login.signup({name, email, password, phone})
+      this.Login.signup({firstname, lastname, email, password, phone})
       .then(response => this.auth(response))
       .catch(response => this.err = response.data.err);
     }

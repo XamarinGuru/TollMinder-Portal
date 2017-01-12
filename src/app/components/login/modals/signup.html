@@ -12,9 +12,18 @@
       <md-input-container flex md-no-float>
         <img src="./../../../../assets/user-icon.png" alt="">
         <input type="text"
-               placeholder="Full Name"
-               name="name"
-               ng-model="dialog.signupModel.name"
+               placeholder="First Name"
+               name="firstname"
+               ng-model="dialog.signupModel.firstname"
+               readonly
+               onfocus="this.removeAttribute('readonly')">
+      </md-input-container>
+      <md-input-container flex md-no-float>
+        <img src="./../../../../assets/user-icon.png" alt="">
+        <input type="text"
+               placeholder="Last Name"
+               name="lastname"
+               ng-model="dialog.signupModel.lastname"
                readonly
                onfocus="this.removeAttribute('readonly')">
       </md-input-container>
