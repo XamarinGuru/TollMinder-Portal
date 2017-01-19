@@ -1,3 +1,6 @@
+// media queries
+$breakpoint-mobile: "only screen and (max-width: 599px)";
+
 .login-wrapper {
   background-color: #40445b;
   background-image: url("./../assets/bg-top.png");
@@ -8,19 +11,16 @@
   //justify-content: center;
   align-items: center;
   min-height: 100vh;
-
   .logo {
     margin-top: 140px;
     margin-bottom: 40px;
   }
-
-  h1 {
+  .title {
     margin-bottom: 110px;
     color: #a2abd0;
     font-weight: 100;
     font-size: 42px;
   }
-
   .md-button {
     color: white;
     width: 240px;
@@ -30,20 +30,19 @@
     font-weight: 600;
     margin-right: 16px;
     margin-left: 16px;
-
     &.social {
-      margin-top: 35px;
-      margin-bottom: 130px;
+      &-wrap {        
+        margin-top: 35px;
+        margin-bottom: 130px;
+      }
       text-transform: lowercase;
       text-transform: capitalize;
       display: flex;
       flex-direction: row;
       align-items: center;
-
       span {
         display: block;
       }
-
       img {
         width: 32px;
         height: 32px;
@@ -51,7 +50,6 @@
         margin-right: 25px;
       }
     }
-
     &.facebook {
       background-color: #5975b1;
       border-color: #7095e3;
@@ -61,6 +59,22 @@
       background-color: #e4e2e2;
       border-color: #fff;
       color: #2f2f2f;
+    }
+  }
+  .footer-bg {
+    width: 100%;
+  }
+  // styles for mobile
+  @media #{$breakpoint-mobile} {
+    .logo {
+      margin-top: 35px;
+      min-width: 215px;
+      width: 40%;
+    }
+    .title {
+      line-height: 0;
+      margin-bottom: 65px;
+      font-size: 36px;
     }
   }
 }

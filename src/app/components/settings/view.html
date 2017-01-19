@@ -5,11 +5,11 @@
         layout-align="space-between flex-start"
         ng-submit="ctrl.saveUser()"
         novalidate>
-    <div layout="row" >
+    <div layout="row" layout-xs="column" layout-align-xs="center center">
       <div class="photo">
         <img src="{{ctrl.user.photo}}">
       </div>
-      <div layout="row" layout-align="space-between center" class="input3">
+      <div layout="row" layout-align="space-between center" class="input3" layout-xs="column" layout-align-xs="center">
         <md-input-container>
           <label>Name</label>
           <input type="text"
@@ -72,7 +72,7 @@
   <form class="billing"
         name="ctrl.billing"
         ng-submit="ctrl.savePaymentInfo()">
-    <h3>Enter your Payment Information</h3>
+    <h3 class="title">Enter your Payment Information</h3>
     <label>
       Cards we assept:
       <img src="../../../assets/visa.png" />

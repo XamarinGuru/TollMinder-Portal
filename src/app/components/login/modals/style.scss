@@ -1,3 +1,6 @@
+// media queries
+$breakpoint-mobile: "only screen and (max-width: 599px)";
+
 .login {
   width: 350px;
   md-toolbar {
@@ -13,7 +16,7 @@
     .close {
       position: absolute;
       margin-right: 0;
-      margin-left: 150px;
+      right: 0;
       font-size: 24px;
       i {
         color: #d2d0d6;
@@ -74,6 +77,17 @@
       height: 50px;
       font-weight: bolder;
       box-shadow: none !important;
+    }
+  }
+  //styles for mobile
+  @media #{$breakpoint-mobile} {
+    md-input-container {
+      box-sizing: border-box;
+    }
+    md-dialog-content {
+      md-select {
+        width: 100%;
+      }
     }
   }
 }
