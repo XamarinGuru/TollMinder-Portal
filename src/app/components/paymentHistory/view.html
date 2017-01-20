@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div layout="row" layout-align="space-between center">
-    <div layout="row" layout-align="center center">
+    <div layout="row" layout-align="center center" layout-xs="column" layout-align-xs="center">
       <label>From</label>
       <md-datepicker ng-model="ctrl.dateFrom"></md-datepicker>
       <div class="space"></div>
@@ -8,8 +8,8 @@
       <md-datepicker ng-model="ctrl.dateTo"></md-datepicker>
       <md-button ng-click="ctrl.selectDateRange()">Submit</md-button>
     </div>
-    <div layout="row" layout-align="center center">
-      <md-radio-group ng-model="ctrl.showCurrent" layout="row">
+    <div layout="row" layout-align="center center" layout-xs="column" layout-align-xs="center">
+      <md-radio-group ng-model="ctrl.showCurrent" layout="row" layout-xs="column" layout-align-xs="center">
         <md-radio-button ng-value="true" class="md-primary">Current</md-radio-button>
         <md-radio-button ng-value="false" class="md-primary">All history</md-radio-button>
       </md-radio-group>

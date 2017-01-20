@@ -1,44 +1,31 @@
-.paymentTable {
-  .md-head {
-    background-color: #dbf8f8;
-    text-transform: uppercase;
-    th {
-      color: #61a9a8 !important;
+ @media #{$breakpoint-mobile} {
+  .total {
+    margin-top: 20px;
+    flex-direction: column;
+    & > div {
+      flex-direction: column;
+      margin-bottom: 15px;
+      div {
+        margin: 0;
+        flex-direction: row;
+      }
     }
   }
-  .md-cell {
-    border-top: 0px !important;
+  md-datepicker {
+    margin-right: 0;
   }
-  .md-body {
-    tr:nth-child(2n) {
-      background-color: #f8f8f8;
+  md-radio-group.layout-row md-radio-button {
+    margin: 9px 0;
+  }
+  .md-table-pagination {
+    & > .buttons:not(:first-child), 
+    & > .limit-select:not(:first-child) {
+      margin-right: 5px;
+      height: 30px;
     }
   }
-}
-
+ }
 .space {
   width:50px;
   height: 1px;
-}
-
-.total {
-  margin-top: 45px;
-  font-weight: bolder;
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  div {
-    display: flex;
-    flex-direction: row;
-    div{
-      margin-left: 20px;
-      color: #767a91;
-      span {
-        color: #61a9a8;
-      }
-    }
-
-  }
 }

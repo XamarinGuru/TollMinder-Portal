@@ -1,8 +1,8 @@
 <div class="login-wrapper">
   <img class="logo" src="./../assets/logo.png"/>
-  <h1>Welcome!</h1>
+  <h1 class="title">Welcome!</h1>
   <div>
-    <div layout="row">
+    <div layout="row" layout-xs="column">
       <md-button ng-click="ctrl.showLogin()">
         Login
       </md-button>
@@ -10,7 +10,7 @@
         Sing up
       </md-button>
     </div>
-    <div layout="row">
+    <div layout="row" layout-xs="column" class="social-wrap">
       <md-button class="social facebook" ng-click="ctrl.facebook()">
         <img src="./../assets/facebook.png" alt="">
         Enter with Facebook
@@ -21,5 +21,5 @@
       </md-button>
     </div>
   </div>
-  <img src="./../assets/bg-bottom.png" alt="">
+  <img class="footer-bg hide-xs" src="./../assets/bg-bottom.png" alt="">
 </div>
