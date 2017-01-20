@@ -12,10 +12,17 @@
     }
   }
   md-datepicker {
-    margin-right: 0; 
+    margin-right: 0;
   }
   md-radio-group.layout-row md-radio-button {
     margin: 9px 0;
+  }
+  .md-table-pagination {
+    & > .buttons:not(:first-child), 
+    & > .limit-select:not(:first-child) {
+      margin-right: 5px;
+      height: 30px;
+    }
   }
  }
 .space {
