@@ -39,26 +39,21 @@ $breakpoint-mobile: "only screen and (max-width: 599px)";
       text-transform: capitalize;
       display: flex;
       flex-direction: row;
-      align-items: center;
+      justify-content: center;
+      position: relative;
       span {
         display: block;
       }
-      img {
-        width: 32px;
-        height: 32px;
-        margin-left: 15px;
-        margin-right: 25px;
-      }
     }
     &.facebook {
-      background-color: #5975b1;
       border-color: #7095e3;
+      background: url("../assets/facebook.png") no-repeat 10px center #5975b1;
     }
 
     &.google {
-      background-color: #e4e2e2;
       border-color: #fff;
       color: #2f2f2f;
+      background: url("../assets/google.png") no-repeat 10px center #e4e2e2;
     }
   }
   .footer-bg {

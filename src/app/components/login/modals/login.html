@@ -1,7 +1,8 @@
 <md-dialog class="login">
   <form name="dialog.form1"
         ng-submit="dialog.signin()"
-        novalidate>
+        novalidate
+        class="form-fix">
     <md-toolbar layout="row">
       <h4>Login</h4>
       <md-button class="md-icon-button close" ng-click="dialog.hideDialog()">
@@ -55,7 +56,7 @@
       </md-input-container>
       <div layout="row" layout-align="space-between center">
         <span></span>
-        <a href="#">Forgot Password?</a>
+        <a href="#" class="forgot-pass">Forgot Password?</a>
       </div>
       <md-button type='submit' class="md-raised md-primary">
         Login
