@@ -1,23 +1,38 @@
 <div class="login-wrapper">
-  <img class="logo" src="./../assets/logo.png"/>
-  <h1 class="title">Welcome!</h1>
-  <div>
-    <div layout="row" layout-xs="column">
-      <md-button ng-click="ctrl.showLogin()">
-        Login
-      </md-button>
-      <md-button ng-click="ctrl.showSignUp()">
-        Sign up
-      </md-button>
-    </div>
-    <div layout="row" layout-xs="column" class="social-wrap">
-      <md-button class="social facebook" ng-click="ctrl.facebook()">
-        Enter with Facebook
-      </md-button>
-      <md-button class="social google" ng-click="ctrl.gPlus()">
-        Enter with Google
-      </md-button>
+  <div class="content">
+    <img class="logo" src="./../assets/logo.png"/>
+    <h1 class="title">Welcome!</h1>
+    <div>
+      <div layout="row" layout-xs="column">
+        <md-button ng-click="ctrl.showLogin()">
+          Login
+        </md-button>
+        <md-button ng-click="ctrl.showSignUp()">
+          Sing up
+        </md-button>
+      </div>
+      <div layout="row" layout-xs="column" class="social-wrap">
+        <md-button class="social facebook" ng-click="ctrl.facebook()">
+          Enter with Facebook
+        </md-button>
+        <md-button class="social google" ng-click="ctrl.gPlus()">
+          Enter with Google
+        </md-button>
+      </div>
     </div>
   </div>
-  <img class="footer-bg hide-xs" src="./../assets/bg-bottom.png" alt="">
+  <div class="footer">
+    <div class="footer-container">
+      <h2 class="footer-title">what is tollminder</h2>
+    </div>
+    <div class="footer-container">
+      <p class="footer-text">TollMinder is the premier link between FasTrak, E-Z Pass and PayByPlate. TollMinder app for Android and iOS incorporates hands free GPS to accurately identify and alert toll users that they are entering a toll road. </p>
+    </div>
+    <div class="footer-container">
+      <h2 class="footer-title">how it works:</h2>
+    </div>
+    <div class="footer-container">
+      <p class="footer-text">Once user accepts toll road entrance our turnkey application handles everything else for a seamless interaction and payment.  TollMinder logs entrance,  exit,  time and date.  Once complete user pays via cell phone.</p>
+    </div>
+  </div>
 </div>

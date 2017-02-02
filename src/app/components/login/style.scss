@@ -2,15 +2,14 @@
 $breakpoint-mobile: "only screen and (max-width: 599px)";
 
 .login-wrapper {
-  background-color: #40445b;
-  background-image: url("./../assets/bg-top.png");
-  background-position: top center;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  //justify-content: center;
-  align-items: center;
   min-height: 100vh;
+  .content {
+    background: url("./../assets/bg-top.png") no-repeat top center #40445b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+  }
   .logo {
     margin-top: 140px;
     margin-bottom: 40px;
@@ -70,3 +69,29 @@ $breakpoint-mobile: "only screen and (max-width: 599px)";
     }
   }
 }
+
+.footer {
+    background: url("../assets/bg-bottom.png") no-repeat bottom center #fff;
+    background-size: cover;
+    color: #fff;
+    width: 100%;
+    padding: 0 10px 10px;
+    box-sizing: border-box;
+    &-container {
+      background: rgba(64, 68, 91, 0.9);
+      padding: 15px 10px;
+      text-align: center;
+      max-width: 900px;
+      margin: 15px auto;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &-title {
+      text-transform: uppercase;
+      font-size: 26px;
+      text-decoration: underline;
+      margin: 0;
+      color: #fff;
+    }
+  }
