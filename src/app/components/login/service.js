@@ -23,14 +23,14 @@ export class LoginService {
     return new Promise((resolve, reject) => {
       let u;
       this.oAuth.gPlus.login()
-      .then(authResult => this.oAuth.gPlus.getUser())
-      .then(user => {
-        let {email, name, picture} = user;
-        u = {email, photo: picture, name, source: 'gplus'};
-        return this.http.post(`${this.API}/user/oauth`, u)
-      })
-      .then(resolve)
-      .catch(_ => reject(u));
+        .then(authResult => this.oAuth.gPlus.getUser())
+        .then(user => {
+          let {email, name, picture} = user;
+          u = {email, photo: picture, name, source: 'gplus'};
+          return this.http.post(`${this.API}/user/oauth`, u)
+        })
+        .then(resolve)
+        .catch(_ => reject(u));
     })
 
   }
@@ -38,15 +38,28 @@ export class LoginService {
   facebookOAuth() {
     return new Promise((resolve, reject) => {
       this.oAuth.facebook.getLoginStatus(resp => {
-        if (resp.status != 'connected') {
+        if (resp.status == 'connected') {
+          return new Promise((res, rej) => {
+          this.oAuth.facebook.api('/me', function (data) {
+            console.log(data);
+            data.source = "facebook";
+            res(data)
+          });
+          }).then(u => {
+            return this.http.post(`${this.API}/user/oauth`, u)
+            .then(resolve)
+            .catch(_ => reject(u));
+          }).catch((u) => reject(u));
+
+          //return this.http.post(`${this.API}/user/oauth`, {email, name,})
+        } else {
           this.oAuth.facebook.login(_ => {
-            this.oAuth.facebook.api('/me?fields=email,name', (u) => {
-              let {name, email} = u;
-              return this.http.post(`${this.API}/user/oauth`, {email, name, })
+            this.oAuth.facebook.api('/me', (u) => {
+              u.source = "facebook";
+              this.http.post(`${this.API}/user/oauth`, u).then(resolve).catch(_ => reject(u))
             });
           });
-        } else {
-          return this.oAuth.facebook.api('/me?fields=email,name', resolve);
+
         }
       })
     });

@@ -14,7 +14,7 @@ export class LoginController {
 
     this.country = this.countries[0];
     this.signinModel = {
-      phone : '',
+      phone: '',
       password: ''
     };
     this.signupModel = {
@@ -22,10 +22,11 @@ export class LoginController {
       lastname: '',
       email: '',
       password: '',
-      phone: ''
+      phone: '',
+      facebookId: ''
     };
     this.oauthModel = {
-      phone : ''
+      phone: ''
     }
   }
 
@@ -39,12 +40,23 @@ export class LoginController {
     this.state.go('home');
   }
 
+  authFB(response) {
+    console.dir(response);
+    localStorage.authToken = response.data.token;
+    let {facebookId, name, _id} = response.data;
+    localStorage.uId = _id;
+    localStorage.user = JSON.stringify({_id, name});
+    this.dialog.hide();
+    this.state.go('home');
+  }
+
+
   signin() {
     let phone = `${this.country.code}${this.signinModel.phone}`;
     if (this.form1.$valid) {
       this.Login.auth(phone, this.signinModel.password)
-      .then(response => this.auth(response))
-      .catch(response => this.err = response.data.err);
+        .then(response => this.auth(response))
+        .catch(response => this.err = response.data.err);
     } else {
       this.log.debug('qwe');
     }
@@ -52,32 +64,54 @@ export class LoginController {
 
   oauthSignUp() {
     if (this.form3.$valid) {
+
+
+
       let user = JSON.parse(localStorage.signUpedUser);
+      console.log(user);
+      user.facebookId = user.id;
+      if (user.name) {
+
+        let nameParts = user.name.split(" ");
+        user.firstname = nameParts[0];
+        user.lastname = nameParts[1];
+        console.log(nameParts);
+      }
       user.phone = `${this.country.code}${this.oauthModel.phone}`;
       this.Login.signup(user)
-      .then(res => this.auth(res))
-      .catch(err => {
-        if (err.status === 302) {
-          this.dialog.hide();
-          return this.dialog
-            .show(
-              this.dialog.alert()
-                .textContent('This user has already been registered using phone and password')
-                .title('Error!')
-                .ok('Ok')
-            );
-        }
-      })
+        .then(res => {
+          if (res.facebookId) {
+            this.authFB(res)
+          }
+          else this.auth(res)
+        })
+        .catch(err => {
+          if (err.status === 302) {
+            this.dialog.hide();
+            return this.dialog
+              .show(
+                this.dialog.alert()
+                  .textContent('This user has already been registered using phone and password')
+                  .title('Error!')
+                  .ok('Ok')
+              );
+          }
+        })
     }
   }
 
   signup() {
     if (this.form2.$valid) {
-      let {firstname, lastname, email, password, phone} = this.signupModel;
+      let {firstname, lastname, email, password, phone, facebookId} = this.signupModel;
       phone = `${this.country.code}${phone}`;
-      this.Login.signup({firstname, lastname, email, password, phone})
-      .then(response => this.auth(response))
-      .catch(response => this.err = response.data.err);
+      this.Login.signup({firstname, lastname, email, password, phone, facebookId})
+        .then(response => {
+          if (facebookId) {
+            this.authFB(response);
+          }
+          this.auth(response);
+        })
+        .catch(response => this.err = response.data.err);
     }
 
   }
@@ -87,7 +121,7 @@ export class LoginController {
       controller: 'LoginController',
       controllerAs: 'dialog',
       templateUrl: 'app/components/login/modals/login.html',
-      clickOutsideToClose:true,
+      clickOutsideToClose: true,
       bindToController: true
     });
   }
@@ -97,7 +131,7 @@ export class LoginController {
       controller: 'LoginController',
       controllerAs: 'dialog',
       templateUrl: 'app/components/login/modals/signup.html',
-      clickOutsideToClose:true,
+      clickOutsideToClose: true,
       bindToController: true
     });
   }
@@ -107,7 +141,7 @@ export class LoginController {
       controller: 'LoginController',
       controllerAs: 'dialog',
       templateUrl: 'app/components/login/modals/phone.html',
-      clickOutsideToClose:true,
+      clickOutsideToClose: true,
       bindToController: true,
     })
   }
@@ -119,19 +153,24 @@ export class LoginController {
   gPlus() {
     this.log.debug('in ctrl');
     this.Login.gPlusOAuth()
-    .then(res => this.auth(res))
-    .catch(u => {
-      localStorage.signUpedUser = JSON.stringify(u);
-      this.showPhoneDialog()
-    })
+      .then(res => this.auth(res))
+      .catch(u => {
+        localStorage.signUpedUser = JSON.stringify(u);
+        this.showPhoneDialog()
+      })
   }
 
   facebook() {
     this.Login.facebookOAuth()
-    .then(u => {
-      localStorage.signUpedUser = JSON.stringify(u);
-      this.showPhoneDialog();
-    })
-    .catch(this.log.debug)
+      .then(user => {
+
+        this.authFB(user);
+      })
+      .catch(
+        u => {
+          localStorage.signUpedUser = JSON.stringify(u);
+          console.log(u);
+          this.showPhoneDialog();
+        })
   }
 }
