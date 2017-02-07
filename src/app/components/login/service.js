@@ -41,7 +41,9 @@ export class LoginService {
         if (resp.status == 'connected') {
           return new Promise((res, rej) => {
           this.oAuth.facebook.api('/me', function (data) {
+
             console.log(data);
+            data.facebookId = data.id;
             data.source = "facebook";
             res(data)
           });
