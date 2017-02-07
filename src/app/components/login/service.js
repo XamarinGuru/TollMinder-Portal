@@ -26,7 +26,7 @@ export class LoginService {
         .then(authResult => this.oAuth.gPlus.getUser())
         .then(user => {
           let {email, name, picture} = user;
-          u = {email, photo: picture, name, source: 'gplus'};
+          u = {facebookId: null, email, source: 'gplus', name};
           return this.http.post(`${this.API}/user/oauth`, u)
         })
         .then(resolve)

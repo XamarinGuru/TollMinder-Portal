@@ -64,14 +64,10 @@ export class LoginController {
 
   oauthSignUp() {
     if (this.form3.$valid) {
-
-
-
       let user = JSON.parse(localStorage.signUpedUser);
       console.log(user);
-      user.facebookId = user.id;
+      user.facebookId = user.id ? user.id : null;
       if (user.name) {
-
         let nameParts = user.name.split(" ");
         user.firstname = nameParts[0];
         user.lastname = nameParts[1];
