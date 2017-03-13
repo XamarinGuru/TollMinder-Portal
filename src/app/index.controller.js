@@ -8,6 +8,7 @@ export class RootController {
   logout() {
     localStorage.authToken = '';
     localStorage.signUpedUser = null;
+    localStorage.user = '';
     this.state.go('login');
   }
 
