@@ -22,7 +22,7 @@ export class SettingsController {
     this.Crud.get('user', localStorage.uId)
       .then((response) => {
         this.user = response.data;
-        this.user.name = this.user.name || (this.user.firstname + ' ' + this.user.lastname);
+        this.user.name = `${this.user.firstname} ${this.user.lastname}`;
       })
       .catch(this.log.error);
   }
@@ -34,9 +34,13 @@ export class SettingsController {
   saveUser() {
     if (this.form.$valid) {
       this.userEditLoaded = false;
-      [this.user.fistname, this.user.lastname]= this.user.name.split(' ');
+      let [firstname, lastname] = this.user.name.split(' ');
+      this.user.firstname = firstname;
+      this.user.lastname = lastname;
+      let data = angular.copy(this.user);
+      delete data.name;
       this.log.debug(this.form);
-      this.Crud.save('user', this.user, true)
+      this.Crud.save('user', data, true)
       .then(_ => {
         this.editMode = !this.editMode;
         this.userEditLoaded = true;
