@@ -3,7 +3,7 @@ export class PaymentController {
     'ngInject';
     this.state = $state;
     this.log = $log;
-    this.Service = PaymentService;
+    this.PaymentService = PaymentService;
     this.dialog = $mdDialog;
     this.window = $window;
     this.timeout = $timeout;
@@ -12,12 +12,13 @@ export class PaymentController {
     this.checkedAll = false;
     this.checkedAny = false;
     this.history = [];
+    this.uId = localStorage.getItem('uId');
     // this.totalCommission = 0;
     // this.totalTolls = 0;
     this.getPaymentHistory();
   }
   getPaymentHistory() {
-    this.Service.getPaymentHistory()
+    this.PaymentService.getPaymentHistory(this.uId, { fullInfo: true })
       .then((res) => {
         this.history = res.data.map(item => {
           item.checked = false;
@@ -41,13 +42,13 @@ export class PaymentController {
   }
   calculateTollsAndCommission() {
     this.totalTolls = this.history.reduce((prev, curr) => {
-      if (curr.checked) return prev + curr.tolls;
+      if (curr.checked) return prev + curr._rate.cost;
       return prev;
     }, 0);
-    this.totalCommission = this.history.reduce((prev, curr) => {
-      if (curr.checked) return prev + curr.commission;
-      return prev;
-    }, 0);
+    // this.totalCommission = this.history.reduce((prev, curr) => {
+    //   if (curr.checked) return prev + curr.commission;
+    //   return prev;
+    // }, 0);
   }
   payChecked() {
     this.dialog.show(

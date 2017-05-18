@@ -19,8 +19,8 @@
         <th md-column><span>State</span></th>
         <th md-column><span>Date and time</span></th>
         <th md-column><span>Tolls</span></th>
-        <th md-column><span>Processing Fees</span></th>
-        <th md-column md-numeric><span>Amount</span></th>
+        <!--<th md-column><span>Processing Fees</span></th>-->
+        <!--<th md-column md-numeric><span>Amount</span></th>-->
       </tr>
       </thead>
       <tbody md-body>
@@ -30,10 +30,10 @@
         </td>
         <td md-cell>{{event._tollRoad.name}}</td>
         <td md-cell>{{event._tollRoad.state}}</td>
-        <td md-cell>{{event.actionDate | date : 'medium'}}</td>
-        <td md-cell>{{event.tolls | currency}}</td>
-        <td md-cell>{{event.commission | currency}}</td>
-        <td md-cell>{{event.tolls + event.commission | currency}}</td>
+        <td md-cell>{{event.tripDate | date : 'medium'}}</td>
+        <td md-cell>{{event._rate.cost | currency}}</td>
+        <!--<td md-cell>{{event.commission | currency}}</td>-->
+        <!--<td md-cell>{{event.tolls  | currency}}</td>-->
       </tr>
       </tbody>
     </table>
@@ -45,18 +45,18 @@
   </md-table-pagination>
   <div layout="row" class="total">
     <div>
-      Total tolls and fees:
-      <div>
-        <span>Tolls:</span>
-        {{ctrl.totalTolls | currency}}
-      </div>
-      <div>
-        <span>Processing fees:</span>
-        {{ctrl.totalCommission | currency}}
-      </div>
+      Total tolls:
+      <!--<div>-->
+        <!--<span>Tolls:</span>-->
+        <!--{{ctrl.totalTolls | currency}}-->
+      <!--</div>-->
+      <!--<div>-->
+        <!--<span>Processing fees:</span>-->
+        <!--{{ctrl.totalCommission | currency}}-->
+      <!--</div>-->
       <div>
         <span>Amount:</span>
-        {{ctrl.totalTolls + ctrl.totalCommission | currency}}
+        {{ctrl.totalTolls | currency}}
       </div>
     </div>
     <md-button class="md-primary"

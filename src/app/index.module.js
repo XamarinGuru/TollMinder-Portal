@@ -10,11 +10,11 @@ import {PaymentHistoryService} from './components/paymentHistory/service';
 import {PaymentService} from './components/payment/service'
 
 import {RootController} from './index.controller';
-import {LoginController} from './components/login/controller';
+import {LoginController} from './components/login/login.controller';
 import {HomeController} from './components/home/controller';
-import {SettingsController} from './components/settings/controller';
-import {PaymentHistoryController} from './components/paymentHistory/controller';
-import {PaymentController} from './components/payment/controller';
+import {SettingsController} from './components/settings/settings.controller';
+import {PaymentHistoryController} from './components/paymentHistory/paymentHistory.controller';
+import {PaymentController} from './components/payment/payment.controller';
 
 angular.module('tollminderPortal',
   [ 'ngSanitize',
